@@ -7,7 +7,7 @@ exports.ticks = function(data, dateField, targetField, tickSize, latestDate) {
 	
 	var latestMs;
 	var output = {}
-	if( latestDate == undefined) {
+	if( latestDate === undefined) {
 		latestMs = new Date().getTime()
 	} else {
 		latestMs = new Date(latestDate).getTime();
@@ -22,14 +22,14 @@ exports.ticks = function(data, dateField, targetField, tickSize, latestDate) {
 		var date = new Date(getField(data[i], dateField))
 		var tick = latestTick - Math.floor(date / tickSize)
 		
-		if (ticks[tick] == undefined) {
+		if (ticks[tick] === undefined) {
 			var tickTime = new Date();
 			tickTime.setTime((latestTick - tick) * tickSize)
 			ticks[tick] = {__date__: tickTime}
 		}
 
-		for (key in data[i]) {
-			if (fields[key] == undefined) { fields[key] = [] }
+		for (var key in data[i]) {
+			if (fields[key] === undefined) { fields[key] = [] }
 
 			var value = data[i][key]
 
@@ -38,7 +38,7 @@ exports.ticks = function(data, dateField, targetField, tickSize, latestDate) {
 			}
 		}
 
-	};
+	}
 	
 	output.ticks = ticks;
 	output.fields = fields;
