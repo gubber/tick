@@ -19,11 +19,11 @@ block content
           ul.nav.navbar-nav.navbar-right
             li
               span {{name}}
-    .container
+    .container(ng-controller="ExploreDataController")
       .starter-template
         h1 Show me the data
         .input-group.input-group-lg
             input.form-control(type='text', placeholder='http://path.to.my.json.com/', ng-model='name')
             span.input-group-btn
-                button.btn.btn-default(type='button') Go!
+                button.btn.btn-default(type='button', ng-click='fetchData()') Go!
     
