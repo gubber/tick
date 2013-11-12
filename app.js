@@ -28,8 +28,8 @@ if ('development' == app.get('env')) {
 }
 
 
-app.get('/show/:eventType/:targetField', routes.index);
-app.get('/data/:eventType/:targetField', routes.data);
+app.get('/', routes.index);
+
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));

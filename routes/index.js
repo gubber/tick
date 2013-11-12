@@ -32,7 +32,5 @@ exports.data = function(req, res){
 };
 
 exports.index = function(req, res) {
-	var dataUrl = '/data/' + req.params.eventType + '/' + req.params.targetField
-	res.locals({dataUrl: dataUrl})
 	res.render('index')
 }
