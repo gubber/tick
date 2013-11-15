@@ -1,6 +1,13 @@
 extends layout
 
 block content
+    script#tree_item_renderer.html(type='text/ng-template')
+      {{data.name}}
+      <button ng-click="add(data)">Add node</button>
+      <button ng-click="delete(data)" ng-show="data.nodes.length > 0">Delete nodes</button>
+      <ul>
+      <li ng-repeat="data in data.nodes" ng-include="'tree_item_renderer.html'"></li>
+      </ul>
     .navbar.navbar-inverse.navbar-fixed-top(role='navigation')
       .container
         .navbar-header
@@ -18,12 +25,15 @@ block content
               a(href='#about') Settings 
           ul.nav.navbar-nav.navbar-right
             li
-              span {{name}}
-    .container(ng-controller="ExploreDataController")
+              span {{dataUrl}}
+    .container(ng-controller="ExploreController")
       .starter-template
         h1 Show me the data
         .input-group.input-group-lg
-            input.form-control(type='text', placeholder='http://path.to.my.json.com/', ng-model='name')
+            input.form-control(type='text', placeholder='http://path.to.my.json.com/', ng-model='dataUrl')
             span.input-group-btn
-                button.btn.btn-default(type='button', ng-click='fetchData()') Go!
-    
+                button.btn.btn-default(type='button', ng-click='fetch()') Go!
+        p
+        ul.list-group
+          li.list-group-item(ng-repeat='(key, value) in structure') 
+            span(ng-click="$parent.explode(field)") {{ key }} - {{ value }} 

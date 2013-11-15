@@ -28,15 +28,7 @@ exports.ticks = function(data, dateField, targetField, tickSize, latestDate) {
 			ticks[tick] = {__date__: tickTime}
 		}
 
-		for (var key in data[i]) {
-			if (fields[key] === undefined) { fields[key] = [] }
-
-			var value = data[i][key]
-
-			if (fields[key].indexOf(value == -1)) { 
-				fields[key].push(value)
-			}
-		}
+		fields = listFieldsWithValues(data[i])
 
 	}
 	
@@ -51,4 +43,35 @@ var getField = function(obj, descriptor) {
     return obj;
 }
 
+
+var getStructure = function(obj) {
+	var structure = {}
+	for(key in obj) {
+		if (Object.prototype.toString.call(obj[key]).indexOf('Array') >= 0) {
+			structure[key] = '...'
+		} else if (Object.prototype.toString.call(obj[key]).indexOf('Object') >= 0){
+			structure[key] = getStructure(obj[key])
+		} else {
+			structure[key] = obj[key]
+		}
+	}
+	return structure
+}
+
+var listFieldsWithValues = function(obj) {
+	var fields = {}
+	for (var key in obj) {
+		if (fields[key] === undefined) { fields[key] = [] }
+		var value = obj[key]
+		if (fields[key].indexOf(value == -1)) { 
+			fields[key].push(value)
+		}
+	}
+	return fields
+}
+
+
+
+exports.listFieldsWithValues = listFieldsWithValues;
 exports.getField = getField;
+exports.getStructure = getStructure;

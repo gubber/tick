@@ -37,6 +37,24 @@ describe('Tick', function() {
 
 			var obj = { one:{two:{three:987}}}
 			assert.equal(tick.getField(obj, "one.two.three"), 987)
+			
+
+		})
+	})
+
+	describe('#getStructure', function() {
+
+		it('should give a skeleton object without arrays', function() {
+
+			var obj = {
+				one: [1,2,3,4,5],
+				two: 'normalValue',
+				three: 3,
+				four: {four:[0,0,0,0], five:'string', six: { seven:[3,2,1], eight:999}}
+
+			}
+			assert.deepEqual(tick.getStructure(obj), {"one":"...","two":"normalValue","three":3,"four":{"four":"...","five":"string","six":{"seven":"...","eight":999}}})
+			
 
 		})
 	})
