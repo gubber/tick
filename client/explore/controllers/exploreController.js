@@ -20,4 +20,14 @@ explore.controller('ExploreController',  function ($scope, $http) {
   		});
 	}
 
+	$scope.isObject = function(obj) {
+		return Object.prototype.toString.call(obj).indexOf('Object') >= 0
+	}
+
+
+	$scope.isNotObject = function(obj) {
+		console.log(obj, "<<< HERE >", Object.prototype.toString.call(obj).indexOf('Object'))
+		return Object.prototype.toString.call(obj).indexOf('Object') < 0
+	}
+
 })

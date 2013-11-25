@@ -53,7 +53,7 @@ describe('Tick', function() {
 				four: {four:[0,0,0,0], five:'string', six: { seven:[3,2,1], eight:999}}
 
 			}
-			assert.deepEqual(tick.getStructure(obj), {"one":"...","two":"normalValue","three":3,"four":{"four":"...","five":"string","six":{"seven":"...","eight":999}}})
+			assert.deepEqual(tick.getStructure(obj), {"one":"[ 5 rows ]","two":"normalValue","three":3,"four":{"four":"[ 4 rows ]","five":"string","six":{"seven":"[ 3 rows ]","eight":999}}})
 			
 
 		})

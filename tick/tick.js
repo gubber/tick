@@ -48,7 +48,7 @@ var getStructure = function(obj) {
 	var structure = {}
 	for(key in obj) {
 		if (Object.prototype.toString.call(obj[key]).indexOf('Array') >= 0) {
-			structure[key] = '...'
+			structure[key] = "[ " + obj[key].length + " rows ]"
 		} else if (Object.prototype.toString.call(obj[key]).indexOf('Object') >= 0){
 			structure[key] = getStructure(obj[key])
 		} else {
